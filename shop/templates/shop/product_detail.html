@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+<div class="product">
+  {% if product.published_date %}
+  <div class="date">
+    {{ product.published_date }}
+  </div>
+  {% else %}
+  <a class="btn btn-default" href="{% url 'product_publish' pk=product.pk %}">Publish</a>
+  {% endif %}
+  
+  {% if user.is_authenticated %}  
+  <a href="{% url 'product_edit' pk=product.pk %}" class="btn btn-default"><i class="fas fa-edit fa-2x fa-fw"></i></a>
+  <a href="{% url 'product_remove' pk=product.pk %}" class="btn btn-default"><i class="fas fa-trash-alt fa-2x fa-fw"></i></a>
+  {% endif %}
+  
+  <h1>Product Name: {{ product.product }}</h1>
+  <p>Price: {{ product.price }} JPY</p>
+  <p>Stock: {{ product.stock }} remains</p>
+  <p>Description: {{ product.description }}</p>
+  <p>Seller Name: {{ product.seller_name }}</p>
+</div>
+
+{% endblock %}

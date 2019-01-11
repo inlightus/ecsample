@@ -1,0 +1,17 @@
+{% extends 'shop/base.html' %}
+
+{% block content %}
+
+{% for product in products %}
+<div class="product">
+  <p class="date">created: {{ product.created_date|date:'d-m-Y' }}</p>
+  <h1><a href="{% url 'product_detail' pk=product.pk %}">{{ product.product }}</a></h1>
+  <p>{{ product.description|truncatechars:200 }}</p>
+</div>
+
+{% empty %}
+<div>
+  <p>You haven't registered any product yet!</p>
+</div>
+{% endfor %}
+{% endblock %}
