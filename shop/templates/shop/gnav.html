@@ -21,6 +21,20 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Contact</a>
         </li>
+        {% if user.is_authenticated %}
+        <li>
+          <a href="{% url 'product_new' %}" class="btn btn-default"><i class="fas fa-plus-square fa-2x fa-fw"></i></a>
+        </li>
+        <li>
+          <a href="{% url 'product_draft_list' %}" class="btn btn-default"><i class="fas fa-edit fa-2x fa-fw"></i></a>
+        </li>
+        <li>
+          <p class="top-menu">Hello {{ user.name }}<small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+        {% else %}
+        <li class="nav-itme">
+          <a href="{% url 'login' %}" class="top-menu"><i class="fas fa-lock fa-2x fa-fw"></i></a>
+        </li>
+        {% endif %}
       </ul>
     </div>
   </div>
